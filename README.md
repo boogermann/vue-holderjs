@@ -51,6 +51,7 @@ export default {
 }
 </script>
 ```
+[JSFiddle Example](https://jsfiddle.net/boogermann/fcb6ttk1/)
 
 [TODO: Update with more examples]
 
