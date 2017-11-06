@@ -5,6 +5,11 @@ Holder renders image placeholders on the client side using SVG.
 
 ## Installing
 
+Install with yarn:
+```bash
+yarn add vue-holderjs
+```
+
 Install with npm:
 ```bash
 npm install vue-holderjs --save-dev
@@ -19,7 +24,7 @@ Vue.use(VueHolder);
 
 Include from a CDN:
 ```html
-<script src="https://unpkg.com/vue-holderjs/dist/index.js"></script>
+<script src="https://unpkg.com/vue-holderjs"></script>
 ```
 
 ## Usage example
@@ -27,9 +32,16 @@ Include from a CDN:
 ```html
 <template>
   <main>
-    <div style="width:300px;height: 300px;overflow: hidden">
-      <img alt="Post Image" v-holder="holder">
+    <!-- using without parameters (defaults to a 100% by 100% image to full the container) -->
+    <div style="width:400px;height:100px">
+      <img v-holder>
     </div>
+    <!-- using object from the data object -->
+    <img v-holder="holder">
+    <!-- using string -->
+    <img v-holder="'img=100px200?auto=yes&theme=social&text=Full width'">
+    <!-- using object -->
+    <img v-holder="{img:'150x150',theme: 'github', text:'150 Fixed!'}">
   </main>
 </template>
 
@@ -42,7 +54,7 @@ export default {
   data () {
     return {
       holder: {
-        img: '500x500',
+        img: '200x200',
         auto: 'yes',
         theme: 'vue'
       }
@@ -52,8 +64,6 @@ export default {
 </script>
 ```
 [JSFiddle Example](https://jsfiddle.net/boogermann/fcb6ttk1/)
-
-[TODO: Update with more examples]
 
 ## Placeholder options
 
@@ -86,7 +96,7 @@ and aditionals ``vue``, ``facebook``, ``twitter``, ``youtube``, ``tumblr``, ``gi
 Specifying a dimension in percentages creates a fluid placeholder that responds to media queries.
 
 ```html
-<img v-holder="img=100px75?theme=social">
+<img v-holder="'img=100px75?theme=social'">
 ```
 
 By default, the fluid placeholder will show its current size in pixels. To display the original dimensions, i.e. 100%x75, set the ``textmode`` flag to ``literal`` like so: `img=100px75?textmode=literal`.
@@ -96,7 +106,7 @@ By default, the fluid placeholder will show its current size in pixels. To displ
 If you'd like to avoid Holder enforcing an image size, use the ``auto`` flag like so:
 
 ```html
-<img v-holder="img=200x200?auto=yes">
+<img v-holder="'img=200x200?auto=yes'">
 ```
 
 The above will render a placeholder without any embedded CSS for height or width.
@@ -113,6 +123,13 @@ Holder is provided under the [MIT License](http://opensource.org/licenses/MIT).
 
 
 ## Change History
+
+### v1.0.2 - 2017/11/05
+* Updated webpack config files
+* Updated package.json
+* Updated README to included more examples
+* Split into 2 versions one for node and one for the browser 
+* Removed unused libraries
 
 ### v1.0.0 - 2017/05/24
 
